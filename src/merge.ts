@@ -12,8 +12,10 @@ const merge = (target, source) => {
 			continue
 		}
 
-		const targetValue = (typeof target[key] === 'undefined' || target[key] === null) ? {} : target[key]
-		merge(targetValue, source[key])
+		if (typeof target[key] === 'undefined' || target[key] === null) {
+			target[key] = {}
+		}
+		merge(target[key], source[key])
 	}
 	return target
 }
